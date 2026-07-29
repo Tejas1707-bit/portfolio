@@ -3215,9 +3215,9 @@ model_pipeline.fit(X_train, y_train)</pre>
     // 11. CONTACT FORM — sends a real email via EmailJS (no backend server needed)
     // SETUP REQUIRED: replace the 3 placeholder values below with your own EmailJS credentials.
     // See the setup steps I gave you separately for how to get these.
-    const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-    const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-    const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+    const EMAILJS_PUBLIC_KEY = "fGhUF8SggKev7CyvS";
+    const EMAILJS_SERVICE_ID = "service_o63fj6d";
+    const EMAILJS_TEMPLATE_ID = "template_d44tcvs";
 
     if (window.emailjs) {
       emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -3262,9 +3262,9 @@ model_pipeline.fit(X_train, y_train)</pre>
       }
 
       emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        from_name: name,
-        from_email: email,
-        subject: subject,
+        name: name,
+        email: email,
+        title: subject,
         message: message
       }).then(() => {
         btn.innerHTML = originalText;
