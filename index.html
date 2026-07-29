@@ -1789,6 +1789,8 @@
       }
     }
   </style>
+  <!-- EmailJS SDK: lets this static site send real emails without a backend server -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -2635,6 +2637,8 @@
 
         </div>
 
+      </div>
+    </section>
 
     <!-- STRENGTHS -->
     <section id="strengths">
@@ -3208,7 +3212,17 @@ model_pipeline.fit(X_train, y_train)</pre>
       }
     });
 
-    // 11. CONTACT FORM INTERACTIVE LOGIC
+    // 11. CONTACT FORM — sends a real email via EmailJS (no backend server needed)
+    // SETUP REQUIRED: replace the 3 placeholder values below with your own EmailJS credentials.
+    // See the setup steps I gave you separately for how to get these.
+    const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+    const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+    const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+
+    if (window.emailjs) {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
+
     function handleFormSubmit(event) {
       event.preventDefault();
       
@@ -3225,34 +3239,50 @@ model_pipeline.fit(X_train, y_train)</pre>
       successStatus.style.display = 'none';
       errorStatus.style.display = 'none';
 
-      // Perform a simulated API post request delay
       const btn = event.target.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
       btn.innerHTML = 'Sending... <svg class="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.2)"></circle><path d="M12 2a10 10 0 0 1 10 10" stroke="#FFFFFF"></path></svg>';
       btn.disabled = true;
 
       // Spin animation css injection helper
-      const style = document.createElement('style');
-      style.innerHTML = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
-      document.head.appendChild(style);
+      if (!document.getElementById('spin-keyframes')) {
+        const style = document.createElement('style');
+        style.id = 'spin-keyframes';
+        style.innerHTML = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
+        document.head.appendChild(style);
+      }
 
-      setTimeout(() => {
+      if (!name || !email || !subject || !message) {
         btn.innerHTML = originalText;
         btn.disabled = false;
-        
-        if (name && email && subject && message) {
-          successStatus.classList.add('success');
-          successStatus.style.display = 'block';
-          event.target.reset(); // clear form inputs
-          // Remove active floating label states
-          document.querySelectorAll('.form-input').forEach(input => {
-            input.placeholder = " ";
-          });
-        } else {
-          errorStatus.classList.add('error');
-          errorStatus.style.display = 'block';
-        }
-      }, 1200);
+        errorStatus.textContent = 'Please fill in all fields before sending.';
+        errorStatus.classList.add('error');
+        errorStatus.style.display = 'block';
+        return;
+      }
+
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name: name,
+        from_email: email,
+        subject: subject,
+        message: message
+      }).then(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        successStatus.classList.add('success');
+        successStatus.style.display = 'block';
+        event.target.reset();
+        document.querySelectorAll('.form-input').forEach(input => {
+          input.placeholder = " ";
+        });
+      }).catch((err) => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        errorStatus.textContent = 'Something went wrong. Please email me directly instead.';
+        errorStatus.classList.add('error');
+        errorStatus.style.display = 'block';
+        console.error('EmailJS error:', err);
+      });
     }
   </script>
 </body>
