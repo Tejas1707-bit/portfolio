@@ -1789,8 +1789,6 @@
       }
     }
   </style>
-  <!-- EmailJS SDK: lets this static site send real emails without a backend server -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -2400,6 +2398,87 @@
             </div>
           </div>
 
+          <!-- PROJECT 4: RAG-BASED COURSE ASSISTANT (IMAGE RIGHT, CONTENT LEFT) -->
+          <div class="project-row fade-in-section">
+            <div class="project-media">
+              <!-- High fidelity mock SVG representation of an AI chat interface -->
+              <svg class="project-media-svg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Chat window frame -->
+                <rect x="10" y="10" width="380" height="220" rx="8" fill="var(--bg-primary)" stroke="var(--border-color)" stroke-width="2"/>
+                <rect x="10" y="10" width="380" height="30" rx="8" fill="var(--bg-card)"/>
+                <line x1="10" y1="40" x2="390" y2="40" stroke="var(--border-color)" stroke-width="1.5"/>
+                <circle cx="25" cy="25" r="5" fill="#FF5F56"/>
+                <circle cx="40" cy="25" r="5" fill="#FFBD2E"/>
+                <circle cx="55" cy="25" r="5" fill="#27C93F"/>
+                <text x="90" y="29" font-family="var(--font-body)" font-size="8" fill="var(--text-secondary)">Course RAG Assistant</text>
+
+                <!-- User question bubble -->
+                <rect x="230" y="55" width="145" height="30" rx="10" fill="var(--accent)" opacity="0.9"/>
+                <text x="245" y="74" font-family="var(--font-body)" font-size="8" fill="#FFFFFF">what is structured data?</text>
+
+                <!-- Assistant answer bubble -->
+                <rect x="25" y="95" width="240" height="55" rx="10" fill="var(--bg-card)" stroke="var(--border-color)"/>
+                <line x1="40" y1="112" x2="245" y2="112" stroke="var(--text-secondary)" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+                <line x1="40" y1="124" x2="220" y2="124" stroke="var(--text-secondary)" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+                <line x1="40" y1="136" x2="180" y2="136" stroke="var(--text-secondary)" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+
+                <!-- Sources used expander -->
+                <rect x="25" y="160" width="240" height="20" rx="6" fill="var(--bg-primary)" stroke="var(--border-color)"/>
+                <text x="35" y="173" font-family="var(--font-body)" font-size="7" fill="var(--highlight)" font-weight="600">&#9656; Sources used  (0.7269 similarity)</text>
+
+                <!-- Embedding vector visualization -->
+                <rect x="285" y="95" width="90" height="105" rx="4" fill="var(--bg-card)" stroke="var(--border-color)"/>
+                <text x="295" y="110" font-family="var(--font-body)" font-size="6" fill="var(--text-secondary)" font-weight="600">EMBEDDING</text>
+                <circle cx="305" cy="125" r="3" fill="var(--accent)"/>
+                <circle cx="320" cy="130" r="3" fill="var(--accent)" opacity="0.7"/>
+                <circle cx="335" cy="120" r="3" fill="var(--highlight)"/>
+                <circle cx="350" cy="135" r="3" fill="var(--accent)" opacity="0.5"/>
+                <circle cx="360" cy="122" r="3" fill="var(--highlight)" opacity="0.8"/>
+                <line x1="305" y1="125" x2="320" y2="130" stroke="var(--border-color)" stroke-width="1"/>
+                <line x1="320" y1="130" x2="335" y2="120" stroke="var(--border-color)" stroke-width="1"/>
+                <line x1="335" y1="120" x2="350" y2="135" stroke="var(--border-color)" stroke-width="1"/>
+                <line x1="350" y1="135" x2="360" y2="122" stroke="var(--border-color)" stroke-width="1"/>
+                <text x="295" y="175" font-family="var(--font-body)" font-size="6" fill="var(--text-secondary)">cosine similarity</text>
+                <text x="295" y="188" font-family="var(--font-body)" font-size="6" fill="var(--text-secondary)">search &#8594; top-3</text>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="section-tag teal">AI & Machine Learning</span>
+              <h3 class="project-title">Course RAG Assistant</h3>
+              <p class="project-desc">An end-to-end Retrieval-Augmented Generation system that transcribes course videos, embeds the transcripts, and answers student questions with grounded, hallucination-guarded responses.</p>
+              <div class="project-tech">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Streamlit</span>
+                <span class="tech-badge">Gemini API</span>
+                <span class="tech-badge">Whisper</span>
+                <span class="tech-badge">Pandas</span>
+                <span class="tech-badge">NumPy</span>
+              </div>
+              <ul class="project-features">
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Whisper-based transcription pipeline converting course audio into timestamped, searchable chunks.
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Semantic retrieval via cosine similarity search over Gemini vector embeddings.
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Similarity threshold and strict prompt guardrails to prevent hallucinated answers.
+                </li>
+              </ul>
+              <div class="project-buttons">
+                <button class="btn btn-primary" onclick="openProjectModal('rag')">View Details</button>
+                <a href="https://tejas1707-bit-course-rag-assistant-app-gemini-lipbbs.streamlit.app/" target="_blank" class="btn btn-secondary">Live Demo</a>
+                <a href="https://github.com/Tejas1707-bit/course-rag-assistant" target="_blank" class="btn btn-secondary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -2637,8 +2716,6 @@
 
         </div>
 
-      </div>
-    </section>
 
     <!-- STRENGTHS -->
     <section id="strengths">
@@ -2986,6 +3063,56 @@ model_pipeline.fit(X_train, y_train)</pre>
     </div>
   </div>
 
+  <!-- RAG Course Assistant Modal -->
+  <div class="modal" id="modal-rag">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="rag-modal-title">
+      <button class="close-modal" onclick="closeProjectModal('rag')" aria-label="Close dialog">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="modal-header">
+        <span class="section-tag teal">AI & Machine Learning</span>
+        <h3 id="rag-modal-title">Course RAG Assistant &mdash; Retrieval-Augmented Generation</h3>
+        <p>An end-to-end RAG pipeline turning course videos into a question-answering assistant grounded in the transcript content.</p>
+      </div>
+
+      <div class="modal-section">
+        <h4>System Architecture</h4>
+        <p>Course video audio is transcribed with OpenAI Whisper into timestamped chunks, embedded using the Gemini API, and stored in a pandas DataFrame. At query time, the question is embedded with the same model, compared against every chunk via cosine similarity, and the top-matching chunks are passed to an LLM to generate a grounded answer.</p>
+        <pre class="code-box" style="margin-bottom: 1.5rem; font-size: 0.8rem; overflow-x: auto;">
+[ Whisper Transcription ] ---&gt; [ Timestamped JSON Chunks ]
+                                        |
+                              [ Gemini Embeddings ]
+                                        |
+                    [ Cosine Similarity Retrieval (Top-K) ]
+                                        |
+                       [ Gemini LLM + Guardrailed Prompt ]
+                                        |
+                         [ Streamlit Chat Interface ]
+        </pre>
+      </div>
+
+      <div class="modal-section">
+        <h4>Key Engineering Elements</h4>
+        <p><strong>1. Semantic Retrieval:</strong> Every transcript chunk and every user question are embedded into the same vector space, allowing questions to match relevant content even when phrased differently than the source text.</p>
+        <p><strong>2. Hallucination Guardrails:</strong> A similarity threshold filters out clearly unrelated questions before calling the LLM, and a strict prompt instruction forces an explicit "not covered" response instead of speculative answers on topically-adjacent but non-answering content.</p>
+        <p><strong>3. Source Transparency:</strong> Each answer links back to the exact video title and timestamp it was generated from, so responses are auditable rather than a black box.</p>
+      </div>
+
+      <div class="modal-section">
+        <h4>Sample Code Block: Retrieval Logic</h4>
+        <pre class="code-box">
+def retrieve(query: str, df: pd.DataFrame, top_k: int = 3):
+    query_embedding = create_embedding(query)
+    similarities = df["embedding"].apply(
+        lambda emb: cosine_similarity(query_embedding, emb)
+    )
+    results = df.copy()
+    results["similarity"] = similarities
+    return results.sort_values("similarity", ascending=False).head(top_k)</pre>
+      </div>
+    </div>
+  </div>
+
   <!-- JAVASCRIPT LOGIC -->
   <script>
     // 1. LIGHT/DARK THEME TOGGLE LOGIC WITH STORAGE PERSISTENCE
@@ -3212,17 +3339,7 @@ model_pipeline.fit(X_train, y_train)</pre>
       }
     });
 
-    // 11. CONTACT FORM — sends a real email via EmailJS (no backend server needed)
-    // SETUP REQUIRED: replace the 3 placeholder values below with your own EmailJS credentials.
-    // See the setup steps I gave you separately for how to get these.
-    const EMAILJS_PUBLIC_KEY = "fGhUF8SggKev7CyvS";
-    const EMAILJS_SERVICE_ID = "service_o63fj6d";
-    const EMAILJS_TEMPLATE_ID = "template_d44tcvs";
-
-    if (window.emailjs) {
-      emailjs.init(EMAILJS_PUBLIC_KEY);
-    }
-
+    // 11. CONTACT FORM INTERACTIVE LOGIC
     function handleFormSubmit(event) {
       event.preventDefault();
       
@@ -3239,50 +3356,34 @@ model_pipeline.fit(X_train, y_train)</pre>
       successStatus.style.display = 'none';
       errorStatus.style.display = 'none';
 
+      // Perform a simulated API post request delay
       const btn = event.target.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
       btn.innerHTML = 'Sending... <svg class="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.2)"></circle><path d="M12 2a10 10 0 0 1 10 10" stroke="#FFFFFF"></path></svg>';
       btn.disabled = true;
 
       // Spin animation css injection helper
-      if (!document.getElementById('spin-keyframes')) {
-        const style = document.createElement('style');
-        style.id = 'spin-keyframes';
-        style.innerHTML = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
-        document.head.appendChild(style);
-      }
+      const style = document.createElement('style');
+      style.innerHTML = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
+      document.head.appendChild(style);
 
-      if (!name || !email || !subject || !message) {
+      setTimeout(() => {
         btn.innerHTML = originalText;
         btn.disabled = false;
-        errorStatus.textContent = 'Please fill in all fields before sending.';
-        errorStatus.classList.add('error');
-        errorStatus.style.display = 'block';
-        return;
-      }
-
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        name: name,
-        email: email,
-        title: subject,
-        message: message
-      }).then(() => {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-        successStatus.classList.add('success');
-        successStatus.style.display = 'block';
-        event.target.reset();
-        document.querySelectorAll('.form-input').forEach(input => {
-          input.placeholder = " ";
-        });
-      }).catch((err) => {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-        errorStatus.textContent = 'Something went wrong. Please email me directly instead.';
-        errorStatus.classList.add('error');
-        errorStatus.style.display = 'block';
-        console.error('EmailJS error:', err);
-      });
+        
+        if (name && email && subject && message) {
+          successStatus.classList.add('success');
+          successStatus.style.display = 'block';
+          event.target.reset(); // clear form inputs
+          // Remove active floating label states
+          document.querySelectorAll('.form-input').forEach(input => {
+            input.placeholder = " ";
+          });
+        } else {
+          errorStatus.classList.add('error');
+          errorStatus.style.display = 'block';
+        }
+      }, 1200);
     }
   </script>
 </body>
